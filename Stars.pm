@@ -29,8 +29,8 @@ sub percent_stars {
 		if ($percent >= $star_id * 10) {
 
 			$stars_hr->{$star_id} = 'full';
-		} elsif (($percent >= ($star_id * 10) - 5)
-			&& ($percent < $star_id * 10)) {
+		} elsif ($percent >= ($star_id * 10) - 5
+			&& $percent < $star_id * 10) {
 
 			$stars_hr->{$star_id} = 'half',
 		} else {
