@@ -2,7 +2,7 @@ use strict;
 use warnings;
 
 use Number::Stars;
-use Test::More 'tests' => 6;
+use Test::More 'tests' => 7;
 use Test::NoWarnings;
 
 # Test.
@@ -85,3 +85,15 @@ $right_ret = {
 	10 => 'nothing',
 };
 is_deeply($ret_hr, $right_ret, 'percent value is 55.');
+
+# Test.
+$obj = Number::Stars->new(
+	'number_of_stars' => 3,
+);
+$ret_hr = $obj->percent_stars(55);
+$right_ret = {
+	1 => 'full',
+	2 => 'half',
+	3 => 'nothing',
+};
+is_deeply($ret_hr, $right_ret, '3 stars, percent value is 55.');

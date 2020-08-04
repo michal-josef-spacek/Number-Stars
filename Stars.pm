@@ -4,6 +4,7 @@ use strict;
 use warnings;
 
 use Class::Utils qw(set_params);
+use Error::Pure qw(err);
 
 our $VERSION = 0.01;
 
@@ -14,8 +15,15 @@ sub new {
 	# Create object.
 	my $self = bless {}, $class;
 
+	# Number of stars.
+	$self->{'number_of_stars'} = 10;
+
 	# Process parameters.
 	set_params($self, @params);
+
+	if ($self->{'number_of_stars'} !~ m/^\d+$/) {
+		err "Parameter 'number_of_stars' must be a number.";
+	}
 
 	return $self;
 }
@@ -25,10 +33,11 @@ sub percent_stars {
 	my ($self, $percent) = @_;
 
 	my $stars_hr = {};
-	foreach my $star_id (1 .. 10) {
-		if ($percent >= $star_id * 10) {
+	my $star_percent = 100 / $self->{'number_of_stars'};
+	foreach my $star_id (1 .. $self->{'number_of_stars'}) {
+		if ($percent >= $star_id * $star_percent) {
 			$stars_hr->{$star_id} = 'full';
-		} elsif ($percent >= ($star_id * 10) - 5) {
+		} elsif ($percent >= ($star_id * $star_percent) - ($star_percent / 2)) {
 			$stars_hr->{$star_id} = 'half',
 		} else {
 			$stars_hr->{$star_id} = 'nothing',
@@ -64,6 +73,16 @@ Number::Stars - Class for conversion between percent number to star visualizatio
 Constructor.
 
 Returns instance of Number::Stars.
+
+=over 8
+
+=item * C<number_of_stars>
+
+Number of stars.
+
+Default value is 10.
+
+=back
 
 =head2 C<percent_stars>
 
@@ -173,9 +192,64 @@ Returns reference to hash.
  # Percent: 55
  # Output: ★★★★★⭒☆☆☆☆
 
+=head1 EXAMPLE3
+
+ use strict;
+ use warnings;
+
+ use Number::Stars;
+ use Readonly;
+ use Unicode::UTF8 qw(decode_utf8 encode_utf8);
+
+ Readonly::Scalar our $FULL_STAR => decode_utf8('★');
+ Readonly::Scalar our $HALF_STAR => decode_utf8('⭒');
+ Readonly::Scalar our $NOTHING_STAR => decode_utf8('☆');
+
+ if (@ARGV < 2) {
+        print STDERR "Usage: $0 number_of_stars percent\n";
+        exit 1;
+ }
+ my $number_of_stars = $ARGV[0];
+ my $percent = $ARGV[1];
+
+ # Object.
+ my $obj = Number::Stars->new(
+         'number_of_stars' => $number_of_stars,
+ );
+
+ # Get structure.
+ my $stars_hr = $obj->percent_stars($percent);
+
+ my $output;
+ foreach my $star_num (sort { $a <=> $b } keys %{$stars_hr}) {
+       if ($stars_hr->{$star_num} eq 'full') {
+               $output .= $FULL_STAR;
+       } elsif ($stars_hr->{$star_num} eq 'half') {
+               $output .= $HALF_STAR;
+       } elsif ($stars_hr->{$star_num} eq 'nothing') {
+               $output .= $NOTHING_STAR;
+       }
+ }
+
+ # Print out.
+ print "Percent: $percent\n";
+ print 'Output: '.encode_utf8($output)."\n";
+
+ # Output for run without arguments:
+ # Usage: __SCRIPT__ number_of_stars percent
+
+ # Output for values 10, 55:
+ # Percent: 55
+ # Output: ★★★★★⭒☆☆☆☆
+
+ # Output for values 3, 55:
+ # Percent: 55
+ # Output: ★⭒☆
+
 =head1 DEPENDENCIES
 
-L<Class::Utils>.
+L<Class::Utils>,
+L<Error::Pure>.
 
 =head1 SEE ALSO
 
