@@ -19,6 +19,7 @@ meta-spec:
 name: Number-Stars
 no_index:
   directory:
+    - examples
     - inc
     - t
     - xt
