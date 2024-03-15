@@ -1,5 +1,6 @@
 0.02
  - Rename example file names to better names.
+ - Rewrite second example in doc to better version.
  - Update Module::Install to 1.21 version.
  - Update copyright years.
 

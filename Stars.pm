@@ -211,12 +211,13 @@ Returns reference to hash.
  Readonly::Scalar our $HALF_STAR => decode_utf8('⭒');
  Readonly::Scalar our $NOTHING_STAR => decode_utf8('☆');
 
- if (@ARGV < 2) {
-        print STDERR "Usage: $0 number_of_stars percent\n";
+ if (@ARGV < 1) {
+        print STDERR "Usage: $0 number_of_stars percent [number_of_stars]\n";
+        print STDERR "\tDefault value of number_of_stars is 10.\n";
         exit 1;
  }
- my $number_of_stars = $ARGV[0];
- my $percent = $ARGV[1];
+ my $percent = $ARGV[0];
+ my $number_of_stars = $ARGV[1] || 10;
 
  # Object.
  my $obj = Number::Stars->new(
@@ -242,13 +243,18 @@ Returns reference to hash.
  print 'Output: '.encode_utf8($output)."\n";
 
  # Output for run without arguments:
- # Usage: __SCRIPT__ number_of_stars percent
+ # Usage: __SCRIPT__ percent [number_of_stars]
+ #         Default value of number_of_stars is 10.
 
- # Output for values 10, 55:
+ # Output for values 55, 10:
  # Percent: 55
  # Output: ★★★★★⭒☆☆☆☆
 
- # Output for values 3, 55:
+ # Output for values 55:
+ # Percent: 55
+ # Output: ★★★★★⭒☆☆☆☆
+
+ # Output for values 55, 3:
  # Percent: 55
  # Output: ★⭒☆
 
