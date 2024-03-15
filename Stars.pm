@@ -103,6 +103,8 @@ Returns reference to hash.
 
 =head1 EXAMPLE1
 
+=for comment filename=percent_to_stars.pl
+
  use strict;
  use warnings;
 
@@ -146,6 +148,8 @@ Returns reference to hash.
  # }
 
 =head1 EXAMPLE2
+
+=for comment filename=percent_to_stars_console.pl
 
  use strict;
  use warnings;
@@ -193,6 +197,8 @@ Returns reference to hash.
  # Output: ★★★★★⭒☆☆☆☆
 
 =head1 EXAMPLE3
+
+=for comment filename=percent_to_stars_console_variable.pl
 
  use strict;
  use warnings;
