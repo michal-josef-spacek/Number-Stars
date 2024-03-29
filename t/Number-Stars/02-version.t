@@ -6,4 +6,4 @@ use Test::More 'tests' => 2;
 use Test::NoWarnings;
 
 # Test.
-is($Number::Stars::VERSION, 0.03, 'Version.');
+is($Number::Stars::VERSION, 0.04, 'Version.');
