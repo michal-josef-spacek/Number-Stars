@@ -36,6 +36,9 @@ ERRORS
      new():
              From Class::Utils::set_params():
                      Unknown parameter '%s'.
+             From Mo::utils::check_number():
+                     Parameter 'number_of_stars' must be a number.
+                             Value: %s
 
 EXAMPLE1
      use strict;
@@ -186,7 +189,7 @@ EXAMPLE3
      # Output: ★⭒☆
 
 DEPENDENCIES
-    Class::Utils, Error::Pure.
+    Class::Utils, Error::Pure, Mo::utils.
 
 SEE ALSO
     Tags::HTML::Stars

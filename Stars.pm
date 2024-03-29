@@ -5,6 +5,7 @@ use warnings;
 
 use Class::Utils qw(set_params);
 use Error::Pure qw(err);
+use Mo::utils 0.09 qw(check_number);
 
 our $VERSION = 0.03;
 
@@ -21,9 +22,8 @@ sub new {
 	# Process parameters.
 	set_params($self, @params);
 
-	if ($self->{'number_of_stars'} !~ m/^\d+$/) {
-		err "Parameter 'number_of_stars' must be a number.";
-	}
+	# Check number_of_stars.
+	check_number($self, 'number_of_stars');
 
 	return $self;
 }
@@ -100,6 +100,9 @@ Returns reference to hash.
  new():
          From Class::Utils::set_params():
                  Unknown parameter '%s'.
+         From Mo::utils::check_number():
+                 Parameter 'number_of_stars' must be a number.
+                         Value: %s
 
 =head1 EXAMPLE1
 
@@ -261,7 +264,8 @@ Returns reference to hash.
 =head1 DEPENDENCIES
 
 L<Class::Utils>,
-L<Error::Pure>.
+L<Error::Pure>,
+L<Mo::utils>.
 
 =head1 SEE ALSO
 

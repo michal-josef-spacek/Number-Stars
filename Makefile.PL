@@ -20,6 +20,7 @@ readme_from 'Stars.pm';
 recursive_author_tests('xt');
 requires 'Class::Utils' => 0.03;
 requires 'Error::Pure' => 0;
+requires 'Mo::utils' => 0.09;
 resources 'bugtracker' => 'https://github.com/michal-josef-spacek/Number-Stars/issues';
 resources 'homepage' => 'https://github.com/michal-josef-spacek/Number-Stars';
 resources 'repository' => 'git://github.com/michal-josef-spacek/Number-Stars';
