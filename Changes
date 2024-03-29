@@ -1,4 +1,5 @@
 0.03
+ - Add missing dot in doc.
  - Improve doc for constructor.
  - Move bugtracker to Github.
  - Move valid tests to top.

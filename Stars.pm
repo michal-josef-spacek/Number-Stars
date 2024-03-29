@@ -273,7 +273,7 @@ L<Mo::utils>.
 
 =item L<Tags::HTML::Stars>
 
-Tags helper for stars evaluation
+Tags helper for stars evaluation.
 
 =back
 

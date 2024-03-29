@@ -193,7 +193,7 @@ DEPENDENCIES
 
 SEE ALSO
     Tags::HTML::Stars
-        Tags helper for stars evaluation
+        Tags helper for stars evaluation.
 
 REPOSITORY
     <https://github.com/michal-josef-spacek/Number-Stars>
