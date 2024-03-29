@@ -72,8 +72,6 @@ Number::Stars - Class for conversion between percent number to star visualizatio
 
 Constructor.
 
-Returns instance of Number::Stars.
-
 =over 8
 
 =item * C<number_of_stars>
@@ -83,6 +81,8 @@ Number of stars.
 Default value is 10.
 
 =back
+
+Returns instance of object.
 
 =head2 C<percent_stars>
 

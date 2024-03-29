@@ -14,13 +14,13 @@ METHODS
 
     Constructor.
 
-    Returns instance of Number::Stars.
-
     *       "number_of_stars"
 
             Number of stars.
 
             Default value is 10.
+
+    Returns instance of object.
 
   "percent_stars"
      my $stars_hr = $obj->percent_stars($percent);
